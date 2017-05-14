@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device.width, initial-scale=1.0">
+        <title>Авторизация</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+    </head>
+    <body>
+        <table class="authContainer">            
+            <tr>
+                <td><label for="username">Логин:</label></td>
+                <td><input id="user" type="text" name="username"/></td>                
+            </tr>
+            <tr>
+                <td><label for="password">Пароль: </label></td>
+                <td><input id="pass" type="password" name="password" /></td>
+            </tr>
+            <tr style="text-align: right;">
+                <td><button class="authBtn" id="auth">Войти</button></td>
+                <td><button class="signUpBtn" id="signUp">Зарегистрироваться</button></td>
+            </tr>
+        </table>
+    </body>
+    <script src="{{ url_for('static', filename='auth.js') }}"></script>
+</html>

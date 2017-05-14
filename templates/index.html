@@ -1,0 +1,139 @@
+<html>
+    <head>
+        <title>UDP socket</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device.width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='toggle-switch.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>        
+    </head>
+    <body>
+        <div class="user">
+            Привет, {{ username }}
+            <a href="/logout">Выйти</a>
+        </div>
+            <div class="container" id="attenuators">            
+                <div class="item container__item ">
+                    <p>Main Gain</p>
+                    <input name="range0" id="range0" class="item__range" type="range" min="-15.5" max="0" step="0.5" value="0" />
+                    <p id="lbl0">0</p>
+                </div>
+                <div class="item container__item ">
+                    <p>17.25</p>
+                    <input name="range1" id="range1" class="item__range" type="range" min="-15" max="0" value="0" />
+                    <p id="lbl1">0</p>
+                </div>
+                <div class="item container__item ">
+                    <p>15.75</p>
+                    <input name="range2" id="range2" class="item__range" type="range" min="-15" max="0"value="0"  />
+                    <p id="lbl2">0</p>
+                </div>
+                <div class="item container__item ">
+                    <p>14.25</p>
+                    <input name="range3" id="range3" class="item__range" type="range" min="-15" max="0" value="0"/>
+                    <p id="lbl3">0</p>
+                </div>
+                <div class="item container__item ">
+                    <p>12.75</p>
+                    <input name="range4" id="range4" class="item__range" type="range" min="-15" max="0" value="0" />
+                    <p id="lbl4">0</p>
+                </div>
+                <div class="item container__item ">
+                    <p>11.25</p>
+                    <input name="range5" id="range5" class="item__range" type="range" min="-15" max="0" value="0" />
+                    <p id="lbl5">0</p>
+                </div>
+                <div class="item container__item ">
+                    <p>9.75</p>
+                    <input name="range6" id="range6" class="item__range" type="range" min="-15" max="0" value="0" />
+                    <p id="lbl6">0</p>
+                </div>
+                <div class="item container__item ">
+                    <p>8.25</p>
+                    <input name="range7" id="range7" class="item__range" type="range" min="-15" max="0" value="0" />
+                    <p id="lbl7">0</p>
+                </div>
+                <div class="item container__item ">
+                    <p>6.75</p>
+                    <input name="range8" id="range8" class="item__range" type="range" min="-15" max="0" value="0" />
+                    <p id="lbl8">0</p>
+                </div>
+                <div class="item container__item ">
+                    <p>5.25</p>
+                    <input name="range9" id="range9" class="item__range" type="range" min="-15" max="0" value="0" />
+                    <p id="lbl9">0</p>
+                </div>
+                <div class="item container__item ">
+                    <p>3.75</p>
+                    <input name="range10" id="range10" class="item__range" type="range" min="-15" max="0" value="0" />
+                    <p id="lbl10">0</p>
+                </div> 
+                <div class="item container__item>">
+                    <label class="switch-light switch-material" onclick="">
+                        <input id="ngCheck" type="checkbox">
+                        <strong>NG</strong>
+                        <span>
+                            <span>Off</span>
+                            <span>On</span>
+                            <a></a>
+                        </span>
+                    </label>
+                    <label class="switch-light switch-holo" onclick="">
+                        <input id="ngPolCheck" type="checkbox">
+                        <span>
+                            <span>Left</span>
+                            <span>Right</span>
+                            <a></a>
+                        </span>
+                    </label>
+                </div> 
+                <div class="item container__item ">
+                    <p>Sync Freq</p>
+                    <input id="syncRange" class="item__range" type="range" min="0" max="7" value="0" />
+                    <p id="syncLbl">0</p>
+                </div>
+                <div class="item container__item>">
+                    <label class="switch-light switch-material" onclick="">
+                        <input id="mdCheck" type="checkbox">
+                        <strong>MD</strong>
+                        <span>
+                            <span>Off</span>
+                            <span>On</span>
+                            <a></a>
+                        </span>
+                    </label>
+                    <label class="switch-light switch-holo" onclick="">
+                        <input id="mdPolCheck" type="checkbox">
+                        <span>
+                            <span>Left</span>
+                            <span>Right</span>
+                            <a></a>
+                        </span>
+                    </label>
+                </div>               
+            </div>        
+            <div class="ctrlButtons">
+                <button id="sendBtn" class="ctrlButtons__item">Записать</button>
+                <button id="getBtn"  class="ctrlButtons__item">Прочитать</button>
+                <button id="plotBtn" class="ctrlButtons__item">График</button>
+                <button id="saveBtn" class="ctrlButtons__item" disabled>Сохранить</button>
+            </div>
+
+        <div class="content">
+            <canvas width="600" height="400" id="chart" class="chart"></canvas>            
+            <div class="slctContainer">
+                <div class="timeContainer">
+                    <label>Время построения(минут): <input type="number" value="0" class="time" id="time"></label>
+                    <label>Периодичность(секунд): <input type="number" value="0" class="period" id="period"></label>
+                </div>
+                <select multiple id="chanel" class="chanel">
+                    
+                </select>
+                
+            </div>
+        </div>
+        
+    </body>  
+    <script src="{{ url_for('static', filename='Chart.bundle.min.js') }}"></script>  
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+</html>
